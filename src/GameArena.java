@@ -14,11 +14,11 @@ import java.lang.reflect.*;
 public class GameArena extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener
 {
 	// Size of playarea
-	private JFrame frame;
+	protected JFrame frame;
 	private int arenaWidth;
 	private int arenaHeight;
 
-	private boolean exiting = false; 
+	protected boolean exiting = false;
 
 	private ArrayList<Object> things = new ArrayList<Object>();
 
@@ -634,5 +634,31 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 	{
 		return mouseY;
 	}
-	
+
+	public void followMouse(Mallet mallet) {
+		mallet.setXPosition(mouseX);
+		mallet.setYPosition(mouseY);
+	}
+
+	public boolean touching(Puck myPuck, Mallet myMallet)
+	{
+		int distance = (int) Math.sqrt(Math.pow((myMallet.getXPosition() - myPuck.getXPosition()), 2) + Math.pow((myMallet.getYPosition() - myPuck.getYPosition()), 2));
+		//System.out.print(distance);
+		//System.out.print(" " + 0.5 * (myMallet.getSize() + myPuck.getSize()));
+		//System.out.println("");
+		if (distance <=  0.5 * (myPuck.getSize() + myMallet.getSize())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public boolean colliding(Puck myPuck, Mallet myMallet)
+	{
+		if (touching(myPuck, myMallet) && touching(myPuck, myMallet)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

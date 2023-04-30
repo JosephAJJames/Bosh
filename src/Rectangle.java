@@ -12,6 +12,7 @@ public class Rectangle
 	
 	private double xPosition;			// The X coordinate of this Rectangle
 	private double yPosition;			// The Y coordinate of this Rectangle
+	private Vector velocity;			//velocity vector
 	private double width;				// The width of this Rectangle
 	private double height;				// The height of this Rectangle
 	private int layer;					// The layer of this ball is on.

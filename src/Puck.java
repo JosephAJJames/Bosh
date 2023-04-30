@@ -1,16 +1,23 @@
-public class Puck{
-    private int x;
-    private int y;
-    private int x_vel;
-    private int y_vel;
-    private int speed;
+import java.util.Random;
 
-    public Puck(int x, int y, int x_vel, int y_vel)
+public class Puck extends Ball{
+    private Random randomInt = new Random();
+    public Puck(int aX_position, int aY_position, int aX_vel, int aY_vel, int aDiameter, String colour, int aLayer)
     {
-        this.x = x;
-        this.y = y;
-        this.x_vel = x_vel;
-        this.y_vel = y_vel;
-        this.speed = (int) Math.sqrt(x_vel * x_vel + y_vel * y_vel);
+        super(aX_position, aY_position, aX_vel, aY_vel, aDiameter, colour, aLayer);
+    }
+
+    public void updatePosition()
+    {
+        super.xPosition = super.xPosition + super.velocity.getX_vel();
+        super.yPosition = super.yPosition + super.velocity.getY_vel();
+    }
+
+    public void setVelocity(int vel, char xOrY) {
+        if (xOrY == 'x') {
+            super.velocity.setX_vel(vel);
+        } else if (xOrY == 'y') {
+            super.velocity.setY_vel(vel);
+        }
     }
 }

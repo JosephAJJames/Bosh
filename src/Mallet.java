@@ -1,5 +1,14 @@
-public class Mallet extends Puck{
-    public Mallet(int x, int y, int x_vel, int y_vel) {
-        super(x, y, x_vel, y_vel);
+public class Mallet extends Ball {
+    Vector[] displacmentVectorQueue = new Vector[3];
+    public Mallet(int aX_position, int aY_position, int aDiameter, String colour, int aLayer)
+    {
+        super(aX_position, aY_position, 0, 0, aDiameter, colour, aLayer);
     }
+
+    public int calcVel()
+    {
+        return 1;
+    }
+
+
 }
