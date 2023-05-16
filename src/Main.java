@@ -6,6 +6,9 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         GameArena table = new GameArena(800, 800, true);
+        Line topLine = new Line(400, 0, 400, 250, 5, "BLUE", 2);
+        Line bottomLine = new  Line(400, 800, 400, 450, 5, "BLUE", 2);
+        Ball outerPitchCircle = new Ball(400, 400, );
         Rectangle background = new Rectangle(0, 0, 800, 800, "WHITE", 1);
         Puck myPuck = new Puck(5, 5, 10, 10, 20, "BLUE", 2);
         Mallet player1 = new Mallet(700, 400, 20, "BLACK", 2);
@@ -14,8 +17,10 @@ public class Main {
         table.addBall(myPuck);
         table.addBall(player1);
         table.addBall(player2);
+        table.addLine(topLine);
+        table.addLine(bottomLine);
         boolean running = true;
-        while (true) {
+        while (running) {
             myPuck.updatePosition();
             if (myPuck.getXPosition() <= 0 || myPuck.getXPosition() >= 800) {
                 myPuck.getVelocity().setX_vel(Math.negateExact(myPuck.getVelocity().getX_vel()));
