@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         GameArena table = new GameArena(800, 800, true);
         Rectangle background = new Rectangle(0, 0, 800, 800, "WHITE", 1);
-        Puck myPuck = new Puck(5, 5, 0, 0, 20, "BLUE", 2);
+        Puck myPuck = new Puck(5, 5, 10, 10, 20, "BLUE", 2);
         Mallet player1 = new Mallet(700, 400, 20, "BLACK", 2);
         Mallet player2 = new Mallet(200, 400, 20, "BLACK", 2);
         table.addRectangle(background);
