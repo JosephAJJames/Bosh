@@ -9,12 +9,16 @@ import java.lang.reflect.*;
 
 /**
  * This class provides a simple window in which grahical objects can be drawn.
- * @author Joe Finney
+ * @author DJ
  */
 public class GameArena extends JPanel implements Runnable, KeyListener, MouseListener, MouseMotionListener
 {
 	// Size of playarea
 	private JFrame frame;
+	private int player1Score = 0;
+
+	private int player2Score = 0;
+
 	private int arenaWidth;
 	private int arenaHeight;
 
@@ -773,5 +777,16 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 			return false;
 		}
 	}
+
+	//public boolean inGoal(Rectangle goal, Ball ball)
+	//{
+	//	if ((ball.getXPosition() > 790) && (ball.getYPosition() > 200) && (400 > ball.getYPosition())) {
+	//
+	//	}
+	//	if () {
+	//
+	//	}
+	//	return false;
+	//}
 
 }

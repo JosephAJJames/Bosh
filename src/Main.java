@@ -8,17 +8,24 @@ public class Main {
         GameArena table = new GameArena(800, 800, true);
         Line topLine = new Line(400, 0, 400, 250, 5, "BLUE", 2);
         Line bottomLine = new  Line(400, 800, 400, 450, 5, "BLUE", 2);
-        Ball outerPitchCircle = new Ball(400, 400, );
+        Ball outerPitchCircle = new Ball(400, 350, 0, 0, 100, "BLUE", 2);
+        Ball innerPitchCircle = new Ball(400, 350, 0, 0, 90, "WHITE", 3);
         Rectangle background = new Rectangle(0, 0, 800, 800, "WHITE", 1);
         Puck myPuck = new Puck(5, 5, 10, 10, 20, "BLUE", 2);
         Mallet player1 = new Mallet(700, 400, 20, "BLACK", 2);
         Mallet player2 = new Mallet(200, 400, 20, "BLACK", 2);
+        Rectangle leftGoal = new Rectangle(0, 200, 10, 200, "GREY", 5);
+        Rectangle rightGoal = new Rectangle(790, 200, 10, 200, "GREY", 5);
         table.addRectangle(background);
         table.addBall(myPuck);
         table.addBall(player1);
         table.addBall(player2);
         table.addLine(topLine);
         table.addLine(bottomLine);
+        table.addBall(outerPitchCircle);
+        table.addBall(innerPitchCircle);
+        table.addRectangle(leftGoal);
+        table.addRectangle(rightGoal);
         boolean running = true;
         while (running) {
             myPuck.updatePosition();
@@ -39,6 +46,8 @@ public class Main {
             if (table.colliding(myPuck, player2)) {
                 System.out.println("touching ...");
             }
+            //System.out.print(table.getMousePositionX() + ", ");
+            //System.out.println(table.getMousePositionY());
             table.pause();
         }
     }
