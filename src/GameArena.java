@@ -778,15 +778,36 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 		}
 	}
 
-	//public boolean inGoal(Rectangle goal, Ball ball)
-	//{
-	//	if ((ball.getXPosition() > 790) && (ball.getYPosition() > 200) && (400 > ball.getYPosition())) {
-	//
-	//	}
-	//	if () {
-	//
-	//	}
-	//	return false;
-	//}
+	public int getPlayer1Score()
+	{
+		return player1Score;
+	}
+
+	public void setPlayer1Score(int score)
+	{
+		player1Score = score;
+	}
+
+	public int getPlayer2Score()
+	{
+		return player2Score;
+	}
+
+	public void setPlayer2Score(int score)
+	{
+		player2Score = score;
+	}
+
+	public boolean inGoal(Goal goal, Ball ball, GameArena table)
+	{
+		if (((ball.getXPosition() > 790) && (ball.getYPosition() > 200) && (400 > ball.getYPosition())) || ((ball.getXPosition() < 200) && (ball.getYPosition() < 10) && (ball.getYPosition() > 0))) {
+			if (goal.getTeam() == 1) {
+				table.setPlayer2Score(table.getPlayer2Score() + 1);
+			} else {
+				table.setPlayer1Score(table.getPlayer1Score() + 1);
+			}
+		}
+		return false;
+	}
 
 }
