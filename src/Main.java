@@ -14,8 +14,8 @@ public class Main {
         Puck myPuck = new Puck(5, 5, 10, 10, 20, "BLUE", 2);
         Mallet player1 = new Mallet(700, 400, 20, "BLACK", 2);
         Mallet player2 = new Mallet(200, 400, 20, "BLACK", 2);
-        Rectangle leftGoal = new Rectangle(0, 200, 10, 200, "GREY", 5);
-        Rectangle rightGoal = new Rectangle(790, 200, 10, 200, "GREY", 5);
+        Goal leftGoal = new Goal(1, 2, 0, 200, 10, "GREY", 5);
+        Goal rightGoal = new Goal(2, 790, 200, 10, 200, "GREY", 5);
         table.addRectangle(background);
         table.addBall(myPuck);
         table.addBall(player1);
