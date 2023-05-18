@@ -103,6 +103,11 @@ public class Ball
 	{
 		return size;
 	}
+
+	public void setVelocity(Vector velocity)
+	{
+		this.velocity = velocity;
+	}
 	
 	/**
 	 * Sets the diameter of this Ball to the given size.
@@ -147,11 +152,6 @@ public class Ball
 	public void setColour(String c)
 	{
 		colour = c;
-	}
-
-	public void meaureSpeed()
-	{
-
 	}
 
 	public Vector getVelocity() {

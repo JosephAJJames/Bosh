@@ -41,10 +41,10 @@ public class Main {
                 table.followMouse(player2);
             }
             if (table.colliding(myPuck, player1)) {
-                System.out.println("touching...");
+                player1.setVelocity(myPuck.measureVelocity(table));
             }
             if (table.colliding(myPuck, player2)) {
-                System.out.println("touching ...");
+                player2.setVelocity(myPuck.measureVelocity(table));
             }
             //System.out.print(table.getMousePositionX() + ", ");
             //System.out.println(table.getMousePositionY());

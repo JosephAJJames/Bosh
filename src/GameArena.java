@@ -803,11 +803,20 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 		if (((ball.getXPosition() > 790) && (ball.getYPosition() > 200) && (400 > ball.getYPosition())) || ((ball.getXPosition() < 200) && (ball.getYPosition() < 10) && (ball.getYPosition() > 0))) {
 			if (goal.getTeam() == 1) {
 				table.setPlayer2Score(table.getPlayer2Score() + 1);
+				return true;
 			} else {
 				table.setPlayer1Score(table.getPlayer1Score() + 1);
+				return true;
 			}
 		}
 		return false;
 	}
 
+	public Vector getDisplacment(Vector[] vectorArray)
+	{
+		Vector displacment = new Vector(0, 0);
+		displacment.setX_vel(vectorArray[1].getX_vel() - vectorArray[0].getX_vel());
+		displacment.setY_vel(vectorArray[1].getY_vel() - vectorArray[0].getY_vel());
+		return displacment;
+	}
 }

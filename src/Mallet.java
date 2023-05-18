@@ -5,10 +5,6 @@ public class Mallet extends Ball {
         super(aX_position, aY_position, 0, 0, aDiameter, colour, aLayer);
     }
 
-    public int calcVel()
-    {
-        return 1;
-    }
 
 
 }

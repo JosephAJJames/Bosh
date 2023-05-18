@@ -13,11 +13,23 @@ public class Puck extends Ball{
         super.yPosition = super.yPosition + super.velocity.getY_vel();
     }
 
-    public void setVelocity(int vel, char xOrY) {
+    public void setVelocity(int vel, char xOrY)
+    {
         if (xOrY == 'x') {
             super.velocity.setX_vel(vel);
         } else if (xOrY == 'y') {
             super.velocity.setY_vel(vel);
         }
+    }
+
+    public Vector measureVelocity(GameArena table)
+    {
+        Vector[] vectorArray = new Vector[2];
+        vectorArray[0] = new Vector(table.getMousePositionX(), table.getMousePositionY());
+        table.pause();
+        vectorArray[1] = new Vector(table.getMousePositionX(), table.getMousePositionY());
+        Vector displacment = table.getDisplacment(vectorArray);
+        Vector velocity = new Vector((int) (displacment.getX_vel()/0.02), (int) (displacment.getY_vel()/0.02));
+        return velocity;
     }
 }
