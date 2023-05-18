@@ -59,6 +59,29 @@ public class Ball
 		this.velocity.setY_vel(Y_vel);
 	}
 
+
+	public static void main(String[] args)
+	{
+		Ball myBall = new Ball(30, 30, 5, 5, 10, "BLUE", 5);
+		myBall.setVelocity(new Vector(3, 3));
+		myBall.printVelocity();
+		myBall.setVelocity(new Vector(5, 5));
+		myBall.printVelocity();
+		myBall.setVelocity(new Vector(6, 6));
+		myBall.printVelocity();
+	}
+
+	public void printVelocity()
+	{
+		System.out.print(velocity.getX_vel());
+		System.out.println(velocity.getY_vel());
+	}
+
+	public void setVelocity(Vector vector)
+	{
+		velocity = vector;
+	}
+
 	/**
 	 * Obtains the current position of this Ball.
 	 * @return the X coordinate of this Ball within the GameArena.
@@ -104,10 +127,6 @@ public class Ball
 		return size;
 	}
 
-	public void setVelocity(Vector velocity)
-	{
-		this.velocity = velocity;
-	}
 	
 	/**
 	 * Sets the diameter of this Ball to the given size.

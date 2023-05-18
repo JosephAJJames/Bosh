@@ -11,9 +11,9 @@ public class Main {
         Ball outerPitchCircle = new Ball(400, 350, 0, 0, 100, "BLUE", 2);
         Ball innerPitchCircle = new Ball(400, 350, 0, 0, 90, "WHITE", 3);
         Rectangle background = new Rectangle(0, 0, 800, 800, "WHITE", 1);
-        Puck myPuck = new Puck(5, 5, 10, 10, 20, "BLUE", 2);
-        Mallet player1 = new Mallet(700, 400, 20, "BLACK", 2);
-        Mallet player2 = new Mallet(200, 400, 20, "BLACK", 2);
+        Puck myPuck = new Puck(5, 5, 5, 3, 20, "BLUE", 2);
+        Mallet player1 = new Mallet(700, 400, 40, "BLACK", 2);
+        Mallet player2 = new Mallet(200, 400, 40, "BLACK", 2);
         Goal leftGoal = new Goal(1, 0, 0, 200, 10, "GREY", 5);
         Goal rightGoal = new Goal(2, 790, 200, 10, 200, "GREY", 5);
         table.addRectangle(background);
@@ -42,12 +42,16 @@ public class Main {
             }
             if (table.colliding(myPuck, player1)) {
                 player1.setVelocity(myPuck.measureVelocity(table));
+                System.out.println("ran1....");
             }
             if (table.colliding(myPuck, player2)) {
                 player2.setVelocity(myPuck.measureVelocity(table));
+                System.out.println("ran2....");
             }
             //System.out.print(table.getMousePositionX() + ", ");
             //System.out.println(table.getMousePositionY());
+            //System.out.print(myPuck.getVelocity().getX_vel());
+            //System.out.println(", " + myPuck.getVelocity().getY_vel());
             table.pause();
         }
     }
