@@ -54,6 +54,8 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 	private boolean rendered = false;
 	private Image backgroundImage = null;
 
+	private char KorM = 'k';
+
 	/**
 	 * Create a view of a GameArena.
 	 *
@@ -75,6 +77,21 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 	public GameArena(int width, int height, boolean createWindow)
 	{
 		this.init(width, height, createWindow);
+	}
+
+
+	public boolean getKorM(char charter) //returns true or false if the passed in character matches KorM
+	{
+		if (charter == KorM) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void setKorM(char character) //sets KorM's value
+	{
+		this.KorM = character;
 	}
 
 	/**
@@ -527,6 +544,56 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 				return alphasPressed[(int) Character.toUpperCase(key) -asciiAZOffset];
 		return false;
 	}
+
+	public void moving(Mallet myMallet1, Mallet myMallet2, GameArena table, Puck myPuck) //compelted input detection for keyboard control
+	{
+		if (letterPressed('w')) { //upwards
+			myMallet1.setVelocity(new Vector(myMallet1.getVelocity().getX_vel(), myMallet1.getVelocity().getY_vel() - 1));
+		} else if (letterPressed('a')) { //left
+			myMallet1.setVelocity(new Vector(myMallet1.getVelocity().getX_vel() - 1, myMallet1.getVelocity().getY_vel()));
+		} else if (letterPressed('s')) { //down
+			myMallet1.setVelocity(new Vector(myMallet1.getVelocity().getX_vel(), myMallet1.getVelocity().getY_vel() + 1));
+		} else if (letterPressed('d')) { //right
+			myMallet1.setVelocity(new Vector(myMallet1.getVelocity().getX_vel() + 1, myMallet1.getVelocity().getY_vel()));
+		} else if (letterPressed('w') && letterPressed('a')) {
+			myMallet1.setVelocity(new Vector(myMallet1.getVelocity().getX_vel() - 1, myMallet1.getVelocity().getY_vel() - 1));
+		} else if (letterPressed('s') && letterPressed('a')) {
+			myMallet1.setVelocity(new Vector(myMallet1.getVelocity().getX_vel() - 1, myMallet1.getVelocity().getY_vel() + 1));
+		} else if (letterPressed('s') && letterPressed('d')) {
+			myMallet1.setVelocity(new Vector(myMallet1.getVelocity().getX_vel() + 1, myMallet1.getVelocity().getY_vel() + 1));
+		} else if (letterPressed('w') && letterPressed('d')) {
+			myMallet1.setVelocity(new Vector(myMallet1.getVelocity().getX_vel() + 1, myMallet1.getVelocity().getY_vel() - 1));
+		} else if (letterPressed('k')) {
+			table.setKorM('k');
+		} else if (letterPressed('m')) {
+			table.setKorM('m');
+		} else if (upPressed()) {
+			myMallet2.setVelocity(new Vector(myMallet2.getVelocity().getX_vel(), myMallet2.getVelocity().getY_vel() - 1));
+		} else if (leftPressed()) {
+			myMallet2.setVelocity(new Vector(myMallet2.getVelocity().getX_vel() - 1, myMallet2.getVelocity().getY_vel()));
+		} else if (downPressed()) {
+			myMallet2.setVelocity(new Vector(myMallet2.getVelocity().getX_vel(), myMallet2.getVelocity().getY_vel() + 1));
+		} else if (rightPressed()) {
+			myMallet2.setVelocity(new Vector(myMallet2.getVelocity().getX_vel() + 1, myMallet2.getVelocity().getY_vel()));
+		} else if (upPressed() && leftPressed()) {
+			myMallet2.setVelocity(new Vector(myMallet2.getVelocity().getX_vel() - 1, myMallet2.getVelocity().getY_vel() - 1));
+		} else if (downPressed() && leftPressed()) {
+			myMallet2.setVelocity(new Vector(myMallet2.getVelocity().getX_vel() - 1, myMallet2.getVelocity().getY_vel() + 1));
+		} else if (downPressed() && rightPressed()) {
+			myMallet2.setVelocity(new Vector(myMallet2.getVelocity().getX_vel() + 1, myMallet2.getVelocity().getY_vel() + 1));
+		} else if (upPressed() && rightPressed()) {
+			myMallet2.setVelocity(new Vector(myMallet2.getVelocity().getX_vel() + 1, myMallet2.getVelocity().getY_vel() - 1));
+		}
+		if (touching(myPuck, myMallet1)) {
+			myPuck.setVelocity(myMallet1.getVelocity());
+		}
+		if (touching(myPuck, myMallet2)){
+			myPuck.setVelocity(myMallet2.getVelocity());
+		}
+		myMallet1.updatePosition();
+		myMallet2.updatePosition();
+	}
+
 
 	public void keyPressed(KeyEvent e)
 	{

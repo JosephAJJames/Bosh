@@ -52,18 +52,24 @@ public class Main {
             if (myPuck.getYPosition() <= 0 || myPuck.getYPosition() >= 800) {
                 myPuck.getVelocity().setY_vel(Math.negateExact(myPuck.getVelocity().getY_vel())); //invert velocities after collision with wall
             }
-            if (table.getMousePositionX() > 400) {
-                table.followMouse(player1);//if the mouse is in player 1's half make their mallet follow the mouse
-            } else if (table.getMousePositionX() < 400 || table.getMousePositionY() <= 800) {
-                table.followMouse(player2); //if the mouse is in player 2's half make their mallet follow the mouse
-            }
-            if (table.colliding(myPuck, player1)) { //are player 1 and the puck touching
-                myPuck.setVelocity(myPuck.measureVelocity(table)); //updates the pucks velocity Vector after getting hit my a mallet
-                myPuck.puckCollisionCorrection(player1, myPuck); //applies small continuity correction to pucks position relative to a colliding mallet to ensure collisions work correctly
-            }
-            if (table.colliding(myPuck, player2)) { //are player 3 and the puck touching
-                myPuck.setVelocity(myPuck.measureVelocity(table)); //updates the pucks velocity Vector after getting hit my a mallet
-                myPuck.puckCollisionCorrection(player2, myPuck); //applies small continuity correction to pucks position relative to a colliding mallet to ensure collisions work correctly
+            if (table.getKorM('k')) {
+                table.moving(player1, player2, table, myPuck);
+
+            } else { //mouse
+                if (table.getMousePositionX() > 400) {
+                    table.followMouse(player1);//if the mouse is in player 1's half make their mallet follow the mouse
+                }
+                if (table.getMousePositionX() < 400 || table.getMousePositionY() <= 800) {
+                    table.followMouse(player2); //if the mouse is in player 2's half make their mallet follow the mouse
+                }
+                if (table.colliding(myPuck, player1)) { //are player 1 and the puck touching
+                    myPuck.setVelocity(myPuck.measureVelocity(table)); //updates the pucks velocity Vector after getting hit my a mallet
+                    myPuck.puckCollisionCorrection(player1, myPuck); //applies small continuity correction to pucks position relative to a colliding mallet to ensure collisions work correctly
+                }
+                if (table.colliding(myPuck, player2)) { //are player 3 and the puck touching
+                    myPuck.setVelocity(myPuck.measureVelocity(table)); //updates the pucks velocity Vector after getting hit my a mallet
+                    myPuck.puckCollisionCorrection(player2, myPuck); //applies small continuity correction to pucks position relative to a colliding mallet to ensure collisions work correctly
+                }
             }
             if (table.collidingp(1, myPuck, leftGoal, table) || table.collidingp(2, myPuck, rightGoal, table)) { //if the puck is in either goal
                 if (table.collidingp(1, myPuck, leftGoal, table)) {
@@ -83,5 +89,6 @@ public class Main {
             }
             table.pause(); //pause
         }
+
     }
 }
