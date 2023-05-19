@@ -1,15 +1,14 @@
-import java.util.Random;
+
 
 public class Puck extends Ball{
-    private Random randomInt = new Random();
 
-    Vector[] vectorArray;
+    private Vector[] vectorArray;
     public Puck(int aX_position, int aY_position, int aX_vel, int aY_vel, int aDiameter, String colour, int aLayer)
     {
         super(aX_position, aY_position, aX_vel, aY_vel, aDiameter, colour, aLayer);
     }
 
-    public void updatePosition()
+    public void updatePosition() //moves the puck by the alloted amount when called
     {
         super.xPosition = super.xPosition + super.velocity.getX_vel();
         super.yPosition = super.yPosition + super.velocity.getY_vel();
@@ -17,9 +16,9 @@ public class Puck extends Ball{
 
     public void setVectorArray(Vector[] vectorArray) {
         this.vectorArray = vectorArray;
-    }
+    } //sets the vectorArray
 
-    public void setVectorArray(Vector vector1, Vector vector2)
+    public void setVectorArray(Vector vector1, Vector vector2) //sets the elements of the vector array
     {
         vectorArray[0] = vector1;
         vectorArray[1] = vector2;
@@ -28,17 +27,10 @@ public class Puck extends Ball{
     public Vector[] getVectorArray()
     {
         return vectorArray;
-    }
-
-    public static void main(String[] args)
-    {
-        Puck puck = new Puck(0, 0, 0, 0, 10, "BLUE", 5);
-        GameArena table = new GameArena(0, 0, false);
-        puck.measureVelocity(table);
-    }
+    } //returns the vector array
 
 
-    public Vector measureVelocity(GameArena table)
+    public Vector measureVelocity(GameArena table) //used to calculate the velocity of the puck when a mallet hits it
     {
         vectorArray = new Vector[2];
         vectorArray[0] = new Vector(table.getMousePositionX(), table.getMousePositionY());
@@ -51,13 +43,13 @@ public class Puck extends Ball{
         return velocityVector;
     }
 
-    public void friction()
+    public void friction() //will simulate constant friction
     {
         velocity.setX_vel((int) (velocity.getX_vel() * 0.7));
         velocity.setY_vel((int) (velocity.getY_vel() * 0.7));
     }
 
-    public void puckCollisionCorrection(Mallet mallet, Puck puck)
+    public void puckCollisionCorrection(Mallet mallet, Puck puck) //corrects collisions between pucks and mallets
     {
         if (puck.getXPosition() > mallet.getXPosition()) { //puck is to the right of mallet
 

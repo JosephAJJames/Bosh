@@ -59,18 +59,6 @@ public class Ball
 		this.velocity.setY_vel(Y_vel);
 	}
 
-
-	public static void main(String[] args)
-	{
-		Ball myBall = new Ball(30, 30, 5, 5, 10, "BLUE", 5);
-		myBall.setVelocity(new Vector(3, 3));
-		myBall.printVelocity();
-		myBall.setVelocity(new Vector(5, 5));
-		myBall.printVelocity();
-		myBall.setVelocity(new Vector(6, 6));
-		myBall.printVelocity();
-	}
-
 	public void printVelocity()
 	{
 		System.out.print(velocity.getX_vel());

@@ -756,7 +756,7 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 		mallet.setYPosition(mouseY);
 	}
 
-	public boolean touching(Puck myPuck, Mallet myMallet)
+	public boolean touching(Puck myPuck, Mallet myMallet) //if the puck and the passed in mallet are touching
 	{
 		int distance = (int) Math.sqrt(Math.pow((myMallet.getXPosition() - myPuck.getXPosition()), 2) + Math.pow((myMallet.getYPosition() - myPuck.getYPosition()), 2));
 		//System.out.print(distance);
@@ -769,7 +769,7 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 		}
 	}
 
-	public boolean colliding(Puck myPuck, Mallet myMallet)
+	public boolean colliding(Puck myPuck, Mallet myMallet)//checks whether the puck is in either of the goals
 	{
 		if (touching(myPuck, myMallet) && touching(myPuck, myMallet)) {
 			return true;
@@ -778,27 +778,43 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 		}
 	}
 
-	public int getPlayer1Score()
+	public boolean collidingp(int oneOrTwo, Puck myPuck, Goal goal, GameArena table) //checks whether the puck is in either of the goals
+	{
+		if (oneOrTwo == 2) {
+			if (myPuck.getXPosition() > goal.getXPosition()+goal.getWidth() && myPuck.getYPosition() > goal.getYPosition() && myPuck.getYPosition() < goal.getYPosition() + goal.getHeight() ) {
+				table.setPlayer2Score(table.getPlayer2Score() + 1);
+				return true;
+			}
+		} else {
+			if (myPuck.getXPosition() < goal.getXPosition()+goal.getWidth() && myPuck.getYPosition() > goal.getYPosition() && myPuck.getYPosition() < goal.getYPosition() + goal.getHeight() ) {
+				table.setPlayer1Score(table.getPlayer1Score() + 1);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public int getPlayer1Score() //returns player 1's score
 	{
 		return player1Score;
 	}
 
-	public void setPlayer1Score(int score)
+	public void setPlayer1Score(int score) //sets player 1's score
 	{
 		player1Score = score;
 	}
 
-	public int getPlayer2Score()
+	public int getPlayer2Score() //returns player 2's score
 	{
 		return player2Score;
 	}
 
-	public void setPlayer2Score(int score)
+	public void setPlayer2Score(int score) //sets the player2's score
 	{
 		player2Score = score;
 	}
 
-	public boolean inGoal(Goal goal, Ball ball, GameArena table)
+	public boolean inGoal(Goal goal, Ball ball, GameArena table) //returns true or false based on the puck is in either goal
 	{
 		if (((ball.getXPosition() > 790) && (ball.getYPosition() > 200) && (400 > ball.getYPosition())) || ((ball.getXPosition() < 200) && (ball.getYPosition() < 10) && (ball.getYPosition() > 0))) {
 			if (goal.getTeam() == 1) {
@@ -812,7 +828,7 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 		return false;
 	}
 
-	public Vector getDisplacment(Vector[] vectorArray)
+	public Vector getDisplacment(Vector[] vectorArray) //calculates the displacment Vector for the measure velocity method in the Puck class
 	{
 		Vector displacment = new Vector(0, 0);
 		displacment.setX_vel(vectorArray[1].getX_vel() - vectorArray[0].getX_vel());
@@ -820,7 +836,7 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 		return displacment;
 	}
 
-	public void start(Mallet player1, Mallet player2, Puck myPuck)
+	public void start(Mallet player1, Mallet player2, Puck myPuck) //sets all the assets to the starting position on the screen
 	{
 		player1.setXPosition(700);
 		player1.setYPosition(400);
