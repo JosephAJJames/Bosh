@@ -54,7 +54,7 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 	private boolean rendered = false;
 	private Image backgroundImage = null;
 
-	private char KorM = 'k';
+	private char KorM = 'm';
 
 	/**
 	 * Create a view of a GameArena.
