@@ -819,4 +819,15 @@ public class GameArena extends JPanel implements Runnable, KeyListener, MouseLis
 		displacment.setY_vel(vectorArray[1].getY_vel() - vectorArray[0].getY_vel());
 		return displacment;
 	}
+
+	public void start(Mallet player1, Mallet player2, Puck myPuck)
+	{
+		player1.setXPosition(700);
+		player1.setYPosition(400);
+		player2.setXPosition(300);
+		player2.setYPosition(400);
+		myPuck.setXPosition(400);
+		myPuck.setYPosition(400);
+		myPuck.setVelocity(new Vector(0, 0));
+	}
 }

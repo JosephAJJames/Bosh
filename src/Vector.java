@@ -40,4 +40,11 @@ public class Vector
     {
        y_vel = aY_vel;
     }
+
+    public void dampingFactor(int factor)
+    {
+        this.x_vel = x_vel / factor;
+        this.y_vel = y_vel / factor;
+    }
+
 }
